@@ -1,0 +1,49 @@
+Đăng nhập , Đăng ký
+
+
+=> Chọn khu vực(Danh mục khu vực) -> chọn bàn(Bàn) -> chọn món(Danh mục món, món) -> đặt món(Order, Order detail) -> Thanh toán -> xuất hóa đơn 
+			          -> Chuyển bàn
+				  -> Gộp bàn
+
+=> Thống kê doanh thu (Thông kê doanh thu theo tháng, theo tuần, theo năm)
+=> Phân tích doanh thu
+
+Ngày 13
+Web admin: Hoàn thành chức năng chọn khu vực, bàn, đăng ký đăng nhập, giao diện và logic 
+	* Thêm, Sửa, xem
+app model
+	* Xem
+node api
+	* Xem
+
+Ngày 14
+Web admin: Hoàn thành chức năng chọn Danh mục món, món, giao diện và logic 
+	* Thêm, Sửa, xem
+app model
+	* Xem
+node api
+	* Xem
+
+Ngày 15
+Web admin: Hoàn thành chức năng chọn Order, Order detail, chuyển bàn, gộp bàn, giao diện và logic 
+	* Thêm, Sửa, xem
+app model
+	* Xem
+node api
+	* Xem
+
+
+Ngày 16
+Web admin: Hoàn thành chức năng Thanh toán, xuất hóa đơn, giao diện và logic 
+	* Thêm, Sửa, xem
+app model
+	* Xem
+node api
+	* Xem
+
+Ngày 17: Nếu còn thời gian thì làm
+=> Thống kê doanh thu (Thông kê doanh thu theo tháng, theo tuần, theo năm)
+=> Phân tích doanh thu
+Ngược lại thì fix bug những lỗi chưa làm được
+Làm file báo báo song song
+
