@@ -1,8 +1,7 @@
-const { where } = require("sequelize");
-const CategoryModel = require("../model/categories.model");
+const DeskAreaModel = require("../model/deskArea.model");
 
 exports.getAll = async () => {
-  const cursorCategory = await CategoryModel.findAll();
+  const cursorCategory = await DeskAreaModel.findAll();
   return await cursorCategory;
 };
 
@@ -13,12 +12,12 @@ exports.findByName = async (name) => {
 };
 exports.create = async (payload) => {
   const payloadResult = extractCategoryData(payload);
-  const category = await CategoryModel.findOrCreate(payloadResult);
+  const category = await DeskAreaModel.findOrCreate(payloadResult);
   return category;
 };
 
 exports.update = async (data, id) => {
-  const category = await CategoryModel.update(data, {
+  const category = await DeskAreaModel.update(data, {
     where: { id: id },
   });
   return category;
@@ -26,7 +25,7 @@ exports.update = async (data, id) => {
 
 exports.delete = async (id) => {
   try {
-    const record = await CategoryModel.findByPk(id);
+    const record = await DeskAreaModel.findByPk(id);
     await record.destroy();
     return true; // Hoặc bạn có thể trả về thông báo khác để cho biết xóa thành công
   } catch (error) {
@@ -37,7 +36,7 @@ exports.delete = async (id) => {
 
 exports.findById = async (id) => {
   try {
-    const record = await CategoryModel.findByPk(id);
+    const record = await DeskAreaModel.findByPk(id);
     return record;
   } catch (error) {
     return false;
@@ -46,7 +45,7 @@ exports.findById = async (id) => {
 };
 
 const find = async (filter) => {
-  const cursorCategory = await CategoryModel.find(filter);
+  const cursorCategory = await DeskAreaModel.find(filter);
   return await cursorCategory;
 };
 // Định nghĩa các phương thức truy xuất CSDL sử dụng mongodb API

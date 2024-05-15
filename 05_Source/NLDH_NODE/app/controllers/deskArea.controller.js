@@ -1,4 +1,4 @@
-const CategoriesService = require("../services/categories.service");
+const DeskAreaService = require("../services/deskArea.service");
 const ApiError = require("../api-error");
 const Constants = require("../config/constants");
 const commonMsg = require("../config/commonMsg");
@@ -8,9 +8,9 @@ exports.getAll = async (req, res, next) => {
   const { name } = req.query;
   try {
     if (name) {
-      documents = await CategoriesService.getByName();
+      documents = await DeskAreaService.getByName();
     } else {
-      documents = await CategoriesService.getAll();
+      documents = await DeskAreaService.getAll();
     }
   } catch (error) {
     return next(
@@ -29,7 +29,7 @@ exports.create = async (req, res, next) => {
     }
 
     // Tạo hoặc cập nhật bản ghi
-    let document = await CategoriesService.create(req.body);
+    let document = await DeskAreaService.create(req.body);
 
     // Tạo một thông điệp chung API
     const commonMsgApi = new commonMsg(Constants.CREATED[0]);
@@ -38,7 +38,7 @@ exports.create = async (req, res, next) => {
       // Nếu không tạo mới bản ghi
       const commonMsgApi = new commonMsg(Constants.OK[0]);
       // Cập nhật bản ghi đã tồn tại
-      document = await CategoriesService.update(
+      document = await DeskAreaService.update(
         req.body,
         document[0].dataValues.id
       );
@@ -65,7 +65,7 @@ exports.update = async (req, res) => {
     return next(new ApiError(400, Constants.BAD_REQUEST[1]));
   }
   try {
-    const document = await CategoriesService.update(req.body, req.params.id);
+    const document = await DeskAreaService.update(req.body, req.params.id);
     if (!document) {
       return next(new ApiError(400, Constants.BAD_REQUEST[1]));
     }
@@ -88,8 +88,8 @@ exports.delete = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    // Gọi phương thức xóa từ CategoriesService
-    const deleted = await CategoriesService.delete(id);
+    // Gọi phương thức xóa từ DeskAreaService
+    const deleted = await DeskAreaService.delete(id);
     
     if (deleted) {
       const commonMsgApi = new commonMsg(Constants.OK[0]);
@@ -98,7 +98,7 @@ exports.delete = async (req, res, next) => {
         .json(commonMsgApi.apiStatus(Constants.OK[1]));
     } else {
       const commonMsgApi = new commonMsg(Constants.NOT_FOUND[0]);
-      return res.status(404).json(commonMsgApi.apiStatus(Constants.NOT_FOUND[1]));
+      return res.status(404).json(commonMsgApi.apiStatus(Constants.NOT_FOUND));
     }
   } catch (error) {
     console.error("Error:", error);
@@ -110,10 +110,10 @@ exports.delete = async (req, res, next) => {
 
 exports.findOne = async (req, res) => {
   try {
-    const document = await CategoriesService.findById(req.params.id);
+    const document = await DeskAreaService.findById(req.params.id);
     if (!document) {
       const commonMsgApi = new commonMsg(Constants.NOT_FOUND[0]);
-      return res.status(404).json(commonMsgApi.apiStatus(Constants.NOT_FOUND[1]));
+      return res.status(404).json(commonMsgApi.apiStatus("Record not found"));
     }
     const commonMsgApi = new commonMsg(Constants.OK[0]);
     return res
@@ -121,7 +121,7 @@ exports.findOne = async (req, res) => {
         .json(commonMsgApi.apiStatus(document));
   } catch (error) {
     return next(
-      new ApiError(500, Constants.NOT_FOUND[1])
+      new ApiError(500, Constants.INTERNAL_SERVER_ERROR[1])
     );
   }
 };

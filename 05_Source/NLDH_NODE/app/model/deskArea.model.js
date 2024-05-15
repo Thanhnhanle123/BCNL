@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const db = require("../utils/database.util"); // Assuming this is the path to your database configuration file
 
-const CategoryModel = db.MySql.sequelize.define(
-  "Category",
+const DeskAreaModel = db.MySql.sequelize.define(
+  "DeskArea",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -33,4 +33,4 @@ const CategoryModel = db.MySql.sequelize.define(
   }
 );
 
-module.exports = CategoryModel;
+module.exports = DeskAreaModel;
