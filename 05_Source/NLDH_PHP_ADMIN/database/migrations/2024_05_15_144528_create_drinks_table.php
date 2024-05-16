@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('drinks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description')->nullable();
+            // $table->string('type');
+            $table->string('size')->nullable();
+            $table->decimal('price', 8, 2);
+            $table->unsignedBigInteger('category_id'); // Khóa ngoại
+            $table->foreign('category_id')->references('id')->on('categories'); // Khai báo khóa ngoại
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('drinks');
     }
 };

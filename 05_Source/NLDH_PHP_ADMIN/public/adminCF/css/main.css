@@ -1,0 +1,11 @@
+.active-nav-item {
+  background-color: #586069; /* Set your desired background color */
+  color: #fff; /* Set your desired text color */
+  border-radius: 10px;
+}
+
+.nav-link {
+  position: relative;
+  left: 0.2rem;
+}
+

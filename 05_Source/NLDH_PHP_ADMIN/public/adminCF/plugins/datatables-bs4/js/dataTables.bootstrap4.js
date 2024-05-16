@@ -102,8 +102,11 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 							'' : ' disabled');
 						break;
 
-					case 'previous':
-						btnDisplay = lang.sPrevious;
+            case 'previous':
+            btnDisplay = lang.sPrevious;
+            if(lang.sPrevious == 'previous'){
+              btnDisplay = "Quay lại";
+            }
 						btnClass = button + (page > 0 ?
 							'' : ' disabled');
 						break;
@@ -157,7 +160,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 	};
 
 	// IE9 throws an 'unknown error' if document.activeElement is used
-	// inside an iframe or frame. 
+	// inside an iframe or frame.
 	var activeEl;
 
 	try {

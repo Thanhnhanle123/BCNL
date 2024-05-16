@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    <title>{{ $categoryPage }}</title>
+    <title>{{ $drinkPage }}</title>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('adminCF/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -12,8 +12,8 @@
     <!-- Content Header (Page header) -->
     @include('partials.headerContent', [
         'titleContent' => $dataTables,
-        'page' => $categoryPage,
-        'link' => 'categories.index',
+        'page' => $drinkPage,
+        'link' => 'drink.index',
     ])
 
     <!-- Main content -->
@@ -24,7 +24,7 @@
                     <div class="card">
                         <div class="card-header">
                             <a class="float-right btn btn-success"
-                                href="{{ route('categories.create') }}">{{ $add }}</a>
+                                href="{{ route('drink.create') }}">{{ $add }}</a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -32,24 +32,28 @@
                                 <thead>
                                     <tr>
                                         <th>{{ $STT }}</th>
-                                        <th>{{ $name }}</th>
-                                        <th>{{ $description }}</th>
+                                        <th>{{ $drinkName }}</th>
+                                        <th>{{ $size }}</th>
+                                        <th>{{ $price }}</th>
+                                        <th>{{ $categoryName }}</th>
                                         <th>{{ $action }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($categories as $category)
+                                    @foreach ($drinks as $drink)
                                         <tr>
                                             <td>{{ $loop->index + 1 }}</td>
-                                            <td>{{ $category->name }}</td>
-                                            <td>{{ $category->description }}</td>
+                                            <td>{{ $drink->name }}</td>
+                                            <td>{{ $drink->size }}</td>
+                                            <td>{{ $drink->price }}</td>
+                                            <td>{{ $drink->category->name }}</td>
                                             <td>
-                                                <a href="{{ route('categories.edit', ['id' => $category->id]) }}"
+                                                <a href="{{ route('drink.edit', ['id' => $drink->id]) }}"
                                                     class="btn btn-success">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a class="btn btn-danger action_delete"
-                                                    data-url="{{ route('categories.destroy', ['id' => $category->id]) }}">
+                                                    data-url="{{ route('drink.destroy', ['id' => $drink->id]) }}">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </a>
 
@@ -60,8 +64,10 @@
                                 <tfooter>
                                     <tr>
                                         <th>{{ $STT }}</th>
-                                        <th>{{ $name }}</th>
-                                        <th>{{ $description }}</th>
+                                        <th>{{ $drinkName }}</th>
+                                        <th>{{ $size }}</th>
+                                        <th>{{ $price }}</th>
+                                        <th>{{ $categoryName }}</th>
                                         <th>{{ $action }}</th>
                                     </tr>
                                 </tfooter>

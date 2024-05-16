@@ -13,7 +13,7 @@ class StoreCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,15 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             //
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Tên là bắt buộc.',
         ];
     }
 }

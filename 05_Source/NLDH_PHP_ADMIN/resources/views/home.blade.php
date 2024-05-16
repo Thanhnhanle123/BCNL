@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    <title>Trang chủ</title>
+    <title>{{ $homePage }}</title>
 @endsection
 
 @section('content')
@@ -10,11 +10,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Dashboard</h1>
+                    <h1 class="m-0">{{ $dashboard }}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">{{ $homePage }}</a></li>
                         <li class="breadcrumb-item active">Dashboard v1</li>
                     </ol>
                 </div><!-- /.col -->
@@ -258,7 +258,8 @@
                                     <li>
                                         <a href="#">
                                             <img class="contacts-list-img"
-                                                src="{{ asset('adminCF/dist/img/user3-128x128.jpg') }}" alt="User Avatar">
+                                                src="{{ asset('adminCF/dist/img/user3-128x128.jpg') }}"
+                                                alt="User Avatar">
 
                                             <div class="contacts-list-info">
                                                 <span class="contacts-list-name">
@@ -274,7 +275,8 @@
                                     <li>
                                         <a href="#">
                                             <img class="contacts-list-img"
-                                                src="{{ asset('adminCF/dist/img/user5-128x128.jpg') }}" alt="User Avatar">
+                                                src="{{ asset('adminCF/dist/img/user5-128x128.jpg') }}"
+                                                alt="User Avatar">
 
                                             <div class="contacts-list-info">
                                                 <span class="contacts-list-name">
@@ -290,7 +292,8 @@
                                     <li>
                                         <a href="#">
                                             <img class="contacts-list-img"
-                                                src="{{ asset('adminCF/dist/img/user6-128x128.jpg') }}" alt="User Avatar">
+                                                src="{{ asset('adminCF/dist/img/user6-128x128.jpg') }}"
+                                                alt="User Avatar">
 
                                             <div class="contacts-list-info">
                                                 <span class="contacts-list-name">
@@ -306,7 +309,8 @@
                                     <li>
                                         <a href="#">
                                             <img class="contacts-list-img"
-                                                src="{{ asset('adminCF/dist/img/user8-128x128.jpg') }}" alt="User Avatar">
+                                                src="{{ asset('adminCF/dist/img/user8-128x128.jpg') }}"
+                                                alt="User Avatar">
 
                                             <div class="contacts-list-info">
                                                 <span class="contacts-list-name">

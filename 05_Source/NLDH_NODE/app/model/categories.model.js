@@ -15,14 +15,14 @@ const CategoryModel = db.MySql.sequelize.define(
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true,  
     },
-    createdAt: {
+    created_at: {
       type: DataTypes.DATE,
       defaultValue: db.MySql.sequelize.literal("CURRENT_TIMESTAMP"), // Use CURRENT_TIMESTAMP for MySQL
       allowNull: false,
     },
-    updatedAt: {
+    updated_at: {
       type: DataTypes.DATE,
       defaultValue: db.MySql.sequelize.literal("CURRENT_TIMESTAMP"),
       allowNull: false,

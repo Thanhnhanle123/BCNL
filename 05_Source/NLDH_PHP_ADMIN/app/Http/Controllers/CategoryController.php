@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\Drink;
+use Illuminate\Support\Facades\Log;
 
 class CategoryController extends Controller
 {
@@ -16,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $categories = Category::paginate(5);
+        $categories = Category::all();
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -28,6 +30,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        return view("admin.categories.create");
     }
 
     /**
@@ -39,6 +42,27 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         //
+        $data = $request->validated();
+        $category = new Category();
+        $category->name = $data['name'];
+        $category->description = $data['description'];
+        $category->save();
+        // $name = $request->name;
+        // $description = $request->description;
+        // $data = [
+        //     'name' => $name,
+        //     'description' => $description
+        // ];
+        // if (empty($id)) {
+        //     if (Category::where('name', $name)->first() != null) {
+        //         Category::where('name', $name)->update($data);
+        //     } else {
+        //         Category::FirstOrCreate($data);
+        //     }
+        // } else {
+        //     Category::find($id)->update($data);
+        // }
+        return redirect()->route('categories.index')->with('success', 'Đã thêm danh mục đồ uống mới thành công.');;
     }
 
     /**
@@ -58,9 +82,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Category $category, $id)
     {
         //
+        $category = Category::find($id);
+        return view("admin.categories.edit", compact("category"));
     }
 
     /**
@@ -73,6 +99,20 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         //
+        $request->validate([
+            'name' => 'required',
+        ], [
+            'name.required' => 'Tên danh mục bắt buộc nhập',
+        ]);
+        $id = $request->id;
+        $name = $request->name;
+        $description = $request->description;
+        $data = [
+            'name' => $name,
+            'description' => $description
+        ];
+        Category::find($id)->update($data);
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -81,8 +121,29 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category, $id)
     {
         //
+        try {
+            $references = Drink::where('category_id', $id)->exists();
+
+            if ($references) {
+                return response()->json([
+                    'code' => 400,
+                    'message' => 'Khóa ngoại đang được sử dụng và không thể xóa.'
+                ], 400);
+            }
+            Category::find($id)->delete();
+            return response()->json([
+                'code' => 200,
+                'message' => 'success'
+            ], 200);
+        } catch (\Exception $exception) {
+            Log::error("message" . $exception->getMessage() . " --- Line : " . $exception->getLine());
+            return response()->json([
+                'code' => 500,
+                'message' => $exception->getMessage()
+            ], 500);
+        }
     }
 }
