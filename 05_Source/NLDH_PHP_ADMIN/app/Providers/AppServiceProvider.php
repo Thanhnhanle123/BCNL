@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         view()->share('dashboard', 'Bảng điều khiển');
         view()->share('categoryPage', 'Danh mục đồ uống');
         view()->share('addCategory', 'Thêm danh mục đồ uống');
-        view()->share('editCategory', 'Sửa danh mục đồ uống');
+        view()->share('editCategory', 'Cập nhật danh mục đồ uống');
         view()->share('nameCategory', 'Tên danh mục đồ uống');
         view()->share('enterNameCategory', 'Nhập tên danh mục đồ uống');
         view()->share('descriptionCategory', 'Mô tả danh mục đồ uống');
@@ -39,13 +39,13 @@ class AppServiceProvider extends ServiceProvider
         view()->share('diskPage', 'Bàn');
         view()->share('dataTables', 'Bảng dữ liệu');
         view()->share('add', 'Thêm');
-        view()->share('edit', 'Sửa');
+        view()->share('edit', 'Cập nhật');
         view()->share('STT', 'STT');
         view()->share('name', 'Tên');
         view()->share('description', 'Mô tả');
         view()->share('action', 'Hành động');
         view()->share('addData', 'Thêm dữ liệu');
-        view()->share('editData', 'Sửa dữ liệu');
+        view()->share('editData', 'Cập nhật dữ liệu');
 
         // Drink
         view()->share('drinkPage', 'Đồ uống');
@@ -59,6 +59,7 @@ class AppServiceProvider extends ServiceProvider
         view()->share('enterSizeDrink', 'Nhập kích thước');
         view()->share('priceDrink', 'Giá');
         view()->share('enterPriceDrink', 'Nhập giá');
+        view()->share('editDrink', 'Cập nhật đồ uống');
 
     }
 }

@@ -13,7 +13,7 @@ class UpdateDrinkRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,22 @@ class UpdateDrinkRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'size' => 'required|string',
+            'price' => 'required|numeric',
+            'category_id' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Tên là bắt buộc.',
+            'name.string' => 'Tên phải là chuỗi.',
+            'name.max' => 'Tên không được vượt quá 255 ký tự.',
+            'size.required' => 'Kích thước là bắt buộc',
+            'price.required' => 'Giá là bắt buộc.',
+            'price.numeric' => 'Giá phải là một số.'
         ];
     }
 }

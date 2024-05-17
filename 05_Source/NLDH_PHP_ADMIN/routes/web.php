@@ -31,7 +31,7 @@ Route::prefix('category')->group(function () {
     Route::get('/create',     [CategoryController::class, 'create'])->name('categories.create');
     Route::post('/create',    [CategoryController::class, 'store'])->name('categories.store');
     Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
-    Route::post('/update', [CategoryController::class, 'update'])->name('categories.update');
+    Route::post('/update/{id}', [CategoryController::class, 'update'])->name('categories.update');
     Route::get('/destroy/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 });
 
@@ -42,7 +42,7 @@ Route::prefix('drink')->group(function () {
     Route::get('/create',       [DrinkController::class, 'create'])->name('drink.create');
     Route::post('/create',      [DrinkController::class, 'store'])->name('drink.store');
     Route::get('/edit/{id}',    [DrinkController::class, 'edit'])->name('drink.edit');
-    Route::post('/update',      [DrinkController::class, 'update'])->name('drink.update');
+    Route::post('/update/{id}',      [DrinkController::class, 'update'])->name('drink.update');
     Route::get('/destroy/{id}', [DrinkController::class, 'destroy'])->name('drink.destroy');
 });
 

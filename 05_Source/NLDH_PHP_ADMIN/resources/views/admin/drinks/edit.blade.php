@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    <title>{{ $categoryPage }}</title>
+    <title>{{ $drinkPage }}</title>
 @endsection
 @section('css')
 @endsection
@@ -9,7 +9,7 @@
     <!-- Content Header (Page header) -->
     @include('partials.headerContent', [
         'titleContent' => $editData,
-        'page' => $categoryPage,
+        'page' => $drinkPage,
         'link' => 'categories.index',
     ])
 
@@ -22,25 +22,47 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">{{ $editCategory }}</h3>
+                            <h3 class="card-title">{{ $editDrink }}</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ route('categories.update') }}" method="POST">
+                        <form action="{{ route('drink.update', ['id' => $drink->id]) }}" method="POST">
                             @csrf
-                            <input type="hidden" name="id" value="{{ $category->id }}">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label>{{ $nameCategory }}</label>
-                                    <input type="text" name="name" value="{{ $category->name }}" class="form-control @error('name') is-invalid @enderror" placeholder="{{ $enterNameCategory }}">
+                                    <label>{{ $drinkName }}</label>
+                                    <input type="text" name="name" value="{{ $drink->name }}"
+                                        class="form-control @error('name') is-invalid @enderror"
+                                        placeholder="{{ $enterDrinkName }}">
                                     @error('name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>{{ $descriptionCategory }}</label>
-                                    <input type="text" class="form-control" value="{{ $category->description }}" name="description"
-                                        placeholder="{{ $enterDescriptionCategory }}">
+                                    <label>{{ $sizeDrink }}</label>
+                                    <input type="text" class="form-control @error('size') is-invalid @enderror"
+                                        name="size" value="{{ $drink->size }}" placeholder="{{ $enterSizeDrink }}">
+                                    @error('size')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ $priceDrink }}</label>
+                                    <input type="number" class="form-control @error('price') is-invalid @enderror"
+                                        name="price" value="{{ $drink->price }}" step="any" placeholder="{{ $enterPriceDrink }}">
+                                    @error('price')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ $categoryPage }}</label>
+                                    <select name="category_id" id="category" class="form-control">
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}" {{ $drink->category_id == $category->id ? 'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <!-- /.card-body -->

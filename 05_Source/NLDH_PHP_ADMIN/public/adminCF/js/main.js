@@ -54,6 +54,8 @@ $(document).ready(function () {
 
   setTimeout(function () {
     var successMessage = document.getElementById('successMessage');
-    successMessage.style.display = 'none';
-  }, 2000); // 2 giây// 2 giây
+    if(successMessage != undefined) {
+      successMessage.style.display = 'none';
+    }
+  }, 3000); // 2 giây// 2 giây
 });

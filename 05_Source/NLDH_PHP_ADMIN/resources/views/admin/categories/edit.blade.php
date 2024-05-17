@@ -26,7 +26,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ route('categories.update') }}" method="POST">
+                        <form action="{{ route('categories.update', ['id' => $category->id]) }}" method="POST">
                             @csrf
                             <input type="hidden" name="id" value="{{ $category->id }}">
                             <div class="card-body">

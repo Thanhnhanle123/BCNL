@@ -41,27 +41,11 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
         $data = $request->validated();
         $category = new Category();
         $category->name = $data['name'];
-        $category->description = $data['description'];
+        $category->description = $data['description'] == "" ? $data['name'] : $data['description'];
         $category->save();
-        // $name = $request->name;
-        // $description = $request->description;
-        // $data = [
-        //     'name' => $name,
-        //     'description' => $description
-        // ];
-        // if (empty($id)) {
-        //     if (Category::where('name', $name)->first() != null) {
-        //         Category::where('name', $name)->update($data);
-        //     } else {
-        //         Category::FirstOrCreate($data);
-        //     }
-        // } else {
-        //     Category::find($id)->update($data);
-        // }
         return redirect()->route('categories.index')->with('success', 'Đã thêm danh mục đồ uống mới thành công.');;
     }
 
@@ -96,23 +80,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, $id)
     {
-        //
-        $request->validate([
-            'name' => 'required',
-        ], [
-            'name.required' => 'Tên danh mục bắt buộc nhập',
-        ]);
-        $id = $request->id;
-        $name = $request->name;
-        $description = $request->description;
-        $data = [
-            'name' => $name,
-            'description' => $description
-        ];
-        Category::find($id)->update($data);
-        return redirect()->route('categories.index');
+        $category = Category::findOrFail($id);
+        $category->update($request->validated());
+        return redirect()->route('categories.index')->with('success', 'Cập nhật danh mục đồ uống mới thành công.');
     }
 
     /**
