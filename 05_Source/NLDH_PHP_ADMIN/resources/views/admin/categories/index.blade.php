@@ -32,8 +32,8 @@
                                 <thead>
                                     <tr>
                                         <th>{{ $STT }}</th>
-                                        <th>{{ $name }}</th>
-                                        <th>{{ $description }}</th>
+                                        <th>{{ $nameCategory }}</th>
+                                        <th>{{ $descriptionCategory }}</th>
                                         <th>{{ $action }}</th>
                                     </tr>
                                 </thead>
@@ -60,8 +60,8 @@
                                 <tfooter>
                                     <tr>
                                         <th>{{ $STT }}</th>
-                                        <th>{{ $name }}</th>
-                                        <th>{{ $description }}</th>
+                                        <th>{{ $nameCategory }}</th>
+                                        <th>{{ $descriptionCategory }}</th>
                                         <th>{{ $action }}</th>
                                     </tr>
                                 </tfooter>

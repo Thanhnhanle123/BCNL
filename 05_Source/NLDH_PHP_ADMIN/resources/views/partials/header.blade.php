@@ -34,7 +34,7 @@
 
           <!-- Messages Dropdown Menu -->
           <li class="nav-item">
-              <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#"
+              <a class="nav-link" href="{{ route('user.logout') }}"
                   role="button">
                   <i class="fas fa-sign-out-alt"></i>
               </a>

@@ -25,6 +25,53 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // category
+        Gate::define('list_category', 'App\policies\CategoryPolicy@view');
+        Gate::define('add_category', 'App\policies\CategoryPolicy@create');
+        Gate::define('edit_category', 'App\policies\CategoryPolicy@update');
+        Gate::define('delete_category', 'App\policies\CategoryPolicy@delete');
+
+        // Drink
+        Gate::define('list_drink', 'App\policies\DrinkPolicy@view');
+        Gate::define('add_drink', 'App\policies\DrinkPolicy@create');
+        Gate::define('edit_drink', 'App\policies\DrinkPolicy@update');
+        Gate::define('delete_drink', 'App\policies\DrinkPolicy@delete');
+
+        // Employee
+        Gate::define('list_employee', 'App\policies\EmployeePolicy@view');
+        Gate::define('add_employee', 'App\policies\EmployeePolicy@create');
+        Gate::define('edit_employee', 'App\policies\EmployeePolicy@update');
+        Gate::define('delete_employee', 'App\policies\EmployeePolicy@delete');
+
+
+        // Permission
+        Gate::define('list_permission', 'App\policies\PermissionPolicy@view');
+        Gate::define('add_permission', 'App\policies\PermissionPolicy@create');
+        Gate::define('edit_permission', 'App\policies\PermissionPolicy@update');
+        Gate::define('delete_permission', 'App\policies\PermissionPolicy@delete');
+
+        // Permission group
+        Gate::define('list_permission_group', 'App\policies\PermissionGroupPolicy@view');
+        Gate::define('add_permission_group', 'App\policies\PermissionGroupPolicy@create');
+        Gate::define('edit_permission_group', 'App\policies\PermissionGroupPolicy@update');
+        Gate::define('delete_permission_group', 'App\policies\PermissionGroupPolicy@delete');
+
+        // Role
+        Gate::define('list_role', 'App\policies\RolePolicy@view');
+        Gate::define('add_role', 'App\policies\RolePolicy@create');
+        Gate::define('edit_role', 'App\policies\RolePolicy@update');
+        Gate::define('delete_role', 'App\policies\RolePolicy@delete');
+
+        // Area
+        Gate::define('list_area', 'App\policies\AreaPolicy@view');
+        Gate::define('add_area', 'App\policies\AreaPolicy@create');
+        Gate::define('edit_area', 'App\policies\AreaPolicy@update');
+        Gate::define('delete_area', 'App\policies\AreaPolicy@delete');
+
+        // Home
+        Gate::define('list_home', function($user){
+            return $user->checkPermissionAccess('list_home');
+        });
+
     }
 }

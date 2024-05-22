@@ -8,7 +8,7 @@
 @section('content')
     <!-- Content Header (Page header) -->
     @include('partials.headerContent', [
-        'titleContent' => $editData,
+        'titleContent' => $editCategory,
         'page' => $categoryPage,
         'link' => 'categories.index',
     ])
@@ -28,18 +28,17 @@
                         <!-- form start -->
                         <form action="{{ route('categories.update', ['id' => $category->id]) }}" method="POST">
                             @csrf
-                            <input type="hidden" name="id" value="{{ $category->id }}">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>{{ $nameCategory }}</label>
-                                    <input type="text" name="name" value="{{ $category->name }}" class="form-control @error('name') is-invalid @enderror" placeholder="{{ $enterNameCategory }}">
-                                    @error('name')
+                                    <input type="text" name="nameCategory" value="{{ $category->name }}" class="form-control @error('nameCategory') is-invalid @enderror" placeholder="{{ $enterNameCategory }}">
+                                    @error('nameCategory')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>{{ $descriptionCategory }}</label>
-                                    <input type="text" class="form-control" value="{{ $category->description }}" name="description"
+                                    <input type="text" name="descriptionCategory" value="{{ $category->description }}" class="form-control"
                                         placeholder="{{ $enterDescriptionCategory }}">
                                 </div>
                             </div>

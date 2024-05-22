@@ -31,14 +31,14 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>{{ $nameCategory }}</label>
-                                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="{{ $enterNameCategory }}">
-                                    @error('name')
+                                    <input type="text" name="nameCategory" value="{{ old('nameCategory') }}" class="form-control @error('nameCategory') is-invalid @enderror" placeholder="{{ $enterNameCategory }}">
+                                    @error('nameCategory')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>{{ $descriptionCategory }}</label>
-                                    <input type="text" class="form-control" name="description"
+                                    <input type="text" class="form-control" value="{{ old('descriptionCategory') }}" name="descriptionCategory"
                                         placeholder="{{ $enterDescriptionCategory }}">
                                 </div>
                             </div>

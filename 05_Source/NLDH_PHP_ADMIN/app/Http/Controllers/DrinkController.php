@@ -92,8 +92,9 @@ class DrinkController extends Controller
 
     {
         //
+        $data = $request->validated();
         $drink = Drink::findOrFail($id);
-        $drink->update($request->validated());
+        $drink->update($data);
         return redirect()->route('drink.index')->with('success', 'Cập nhật đồ uống mới thành công.');
     }
 

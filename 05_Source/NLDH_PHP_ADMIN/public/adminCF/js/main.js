@@ -53,9 +53,13 @@ $(document).ready(function () {
   }
 
   setTimeout(function () {
-    var successMessage = document.getElementById('successMessage');
-    if(successMessage != undefined) {
-      successMessage.style.display = 'none';
+    var successMessage = document.getElementById("successMessage");
+    if (successMessage != undefined) {
+      successMessage.style.display = "none";
     }
   }, 3000); // 2 giây// 2 giây
+
+  $(".select2").select2({
+    placeholder: "Chọn vai trò",
+  });
 });

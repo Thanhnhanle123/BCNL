@@ -43,10 +43,10 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
         $category = new Category();
-        $category->name = $data['name'];
-        $category->description = $data['description'] == "" ? $data['name'] : $data['description'];
+        $category->name = $data['nameCategory'];
+        $category->description = $data['descriptionCategory'] == "" ? $data['nameCategory'] : $data['descriptionCategory'];
         $category->save();
-        return redirect()->route('categories.index')->with('success', 'Đã thêm danh mục đồ uống mới thành công.');;
+        return redirect()->route('categories.index')->with('success', 'Đã thêm danh mục đồ uống mới thành công.');
     }
 
     /**
@@ -82,8 +82,11 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, $id)
     {
+        $data = $request->validated();
         $category = Category::findOrFail($id);
-        $category->update($request->validated());
+        $category->name = $data['nameCategory'];
+        $category->description = $data['descriptionCategory'] == "" ? $data['nameCategory'] : $data['descriptionCategory'];
+        $category->update();
         return redirect()->route('categories.index')->with('success', 'Cập nhật danh mục đồ uống mới thành công.');
     }
 

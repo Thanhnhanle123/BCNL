@@ -30,6 +30,8 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('adminCF/plugins/summernote/summernote-bs4.min.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('adminCF/css/select2.min.css') }}">
+
     <link rel="stylesheet" href="{{ asset('adminCF/css/main.css') }}">
 </head>
 
@@ -87,6 +89,7 @@
     <script src="{{ asset('adminCF/dist/js/pages/dashboard.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('adminCF/js/select2.min.js') }}"></script>
     <script src="{{ asset('adminCF/js/main.js') }}"></script>
     <script></script>
     @yield('js')
