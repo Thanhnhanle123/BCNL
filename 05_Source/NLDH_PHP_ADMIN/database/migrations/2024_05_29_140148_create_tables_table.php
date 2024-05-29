@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('permissions', function (Blueprint $table) {
+        Schema::create('tables', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("display_name");
-            $table->string("key_code")->unique();
-            $table->unsignedBigInteger('permission_group_id'); // Khóa ngoại
-            $table->foreign('permission_group_id')->references('id')->on('permission_groups');
+            $table->unsignedBigInteger('area_id'); // Khóa ngoại
+            $table->foreign('area_id')->references('id')->on('areas'); // Khai báo khóa ngoại
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permissions');
+        Schema::dropIfExists('tables');
     }
 };

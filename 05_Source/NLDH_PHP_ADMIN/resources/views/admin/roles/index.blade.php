@@ -23,8 +23,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a class="float-right btn btn-success"
-                                href="{{ route('role.create') }}">{{ $add }}</a>
+                            <a class="float-right btn btn-success" href="{{ route('role.create') }}">{{ $add }}</a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">

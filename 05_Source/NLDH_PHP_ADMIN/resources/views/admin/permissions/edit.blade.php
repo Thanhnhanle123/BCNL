@@ -55,7 +55,9 @@
                                     <select name="permissionKeyCode" id="" class="form-control select2">
                                         @foreach (config('permission.table_module') as $table_module)
                                             @foreach (config('permission.model_children') as $model_children)
-                                                <option {{ ($model_children . '_' . $table_module) == $permission->key_code ? 'selected' : '' }} value="{{ $model_children }}_{{ $table_module }}">
+                                                <option
+                                                    {{ $model_children . '_' . $table_module == $permission->key_code ? 'selected' : '' }}
+                                                    value="{{ $model_children }}_{{ $table_module }}">
                                                     {{ $model_children }}_{{ $table_module }}
                                                 </option>
                                             @endforeach
@@ -70,7 +72,7 @@
                                     <select name="permissionGroupId" id="category" class="form-control select2">
                                         @foreach ($permissionGroups as $permissionGroup)
                                             <option value="{{ $permissionGroup->id }}"
-                                                {{ $permission->permissions_group_id == $permissionGroup->id ? 'selected' : '' }}>
+                                                {{ $permission->permission_group_id == $permissionGroup->id ? 'selected' : '' }}>
                                                 {{ $permissionGroup->name }}
                                             </option>
                                         @endforeach

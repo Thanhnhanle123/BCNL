@@ -42,7 +42,7 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             @if (session('success'))
-            <div id="successMessage" class="alert alert-success">
+                <div id="successMessage" class="alert alert-success">
                     {{ session('success') }}
                 </div>
             @endif
@@ -87,10 +87,11 @@
     <script src="{{ asset('adminCF/dist/js/demo.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('adminCF/dist/js/pages/dashboard.js') }}"></script>
+    <script src="{{ asset('adminCF/dist/js/pages/dashboard.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('adminCF/js/select2.min.js') }}"></script>
     <script src="{{ asset('adminCF/js/main.js') }}"></script>
+    <script src="{{ asset('js/checkbox.js') }}"></script>
     <script></script>
     @yield('js')
 </body>

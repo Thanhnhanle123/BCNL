@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
         view()->share('enterDescriptionCategory', 'Nhập mô tả danh mục đồ uống');
         view()->share('drinksPage', 'Đồ uống');
         view()->share('areaPage', 'Khu vực');
-        view()->share('diskPage', 'Bàn');
+        view()->share('tablePage', 'Bàn');
         view()->share('dataTables', 'Bảng dữ liệu');
         view()->share('add', 'Thêm');
         view()->share('edit', 'Cập nhật');
@@ -121,5 +121,15 @@ class AppServiceProvider extends ServiceProvider
         view()->share('descriptionArea', 'Mô tả khu vực');
         view()->share('enterDescriptionArea', 'Nhập mô tả khu vực');
 
+        // table
+        view()->share('addTable', 'Thêm bàn');
+        view()->share('editTable', 'Cập nhật bàn');
+        view()->share('tableName', 'Tên bàn');
+        view()->share('enterTableName', 'Nhập tên bàn');
+        // view()->share('descriptionTable', 'Mô tả khu vực');
+        // view()->share('enterDescriptionTable', 'Nhập mô tả khu vực');
+
+        // bill
+        view()->share('billPage', 'Hóa đơn');
     }
 }

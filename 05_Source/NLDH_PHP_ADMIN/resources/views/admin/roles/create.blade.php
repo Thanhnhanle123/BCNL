@@ -51,7 +51,7 @@
                             <!-- /.card-body -->
                             <div class="row ml-2">
                                 <div class="col-md-12">
-                                    <input type="checkbox" name="" id="">
+                                    <input type="checkbox" name="" id="checked">
                                     <label for="">Chọn tất cả</label><br>
                                 </div>
                                 @foreach ($permissionGroups as $permissionGroup)
@@ -59,7 +59,8 @@
                                         style="box-shadow: 0px 0px 10px rgba(0, 1, 1, 0.5); border-radius: 10px">
                                         <h5><b>{{ $permissionGroup->name }}</b></h5>
                                         @foreach ($permissionGroup->permissions as $permission)
-                                            <input type="checkbox" value="{{ $permission->id }}" name="permission_id[]">
+                                            <input type="checkbox" value="{{ $permission->id }}" class="option_checkbox"
+                                                name="permission_id[]">
                                             <label for="">{{ $permission->name }}</label><br>
                                         @endforeach
                                     </div>

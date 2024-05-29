@@ -19,6 +19,8 @@ return new class extends Migration
             // $table->string('type');
             $table->string('size')->nullable();
             $table->decimal('price', 8, 2);
+            $table->string('name_image')->nullable();
+            $table->string('path_image')->nullable();
             $table->unsignedBigInteger('category_id'); // Khóa ngoại
             $table->foreign('category_id')->references('id')->on('categories'); // Khai báo khóa ngoại
             $table->timestamps();

@@ -7,6 +7,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PermissionGroupController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
 use App\Models\PermissionGroup;
 use Illuminate\Support\Facades\Route;
@@ -91,13 +92,54 @@ Route::prefix('admin')->middleware('auth', 'session.timeout')->group(function ()
         Route::post('/update/{id}',      [AreaController::class, 'update'])->name('area.update')->middleware("can:edit_area");
         Route::get('/destroy/{id}', [AreaController::class, 'destroy'])->name('area.destroy')->middleware("can:delete_area");
     });
+
+    Route::prefix('table')->group(function () {
+        Route::get('/',             [TableController::class, 'index'])->name('table.index')->middleware("can:list_table");
+        Route::get('/create',       [TableController::class, 'create'])->name('table.create')->middleware("can:add_table");
+        Route::post('/create',      [TableController::class, 'store'])->name('table.store')->middleware("can:add_table");
+        Route::get('/edit/{id}',    [TableController::class, 'edit'])->name('table.edit')->middleware("can:edit_table");
+        Route::post('/update/{id}',      [TableController::class, 'update'])->name('table.update')->middleware("can:edit_table");
+        Route::get('/destroy/{id}', [TableController::class, 'destroy'])->name('table.destroy')->middleware("can:delete_table");
+    });
 });
 
 Route::prefix('employee')->group(function () {
-    Route::get('/',             [EmployeeController::class, 'index'])->name('employee.index')->middleware("can:list_employee");
-    Route::get('/create',       [EmployeeController::class, 'create'])->name('employee.create')->middleware("can:add_employee");
-    Route::post('/create',      [EmployeeController::class, 'store'])->name('employee.store')->middleware("can:add_employee");
-    Route::get('/edit/{id}',    [EmployeeController::class, 'edit'])->name('employee.edit')->middleware("can:edit_employee");
-    Route::post('/update/{id}',      [EmployeeController::class, 'update'])->name('employee.update')->middleware("can:edit_employee");
-    Route::get('/destroy/{id}', [EmployeeController::class, 'destroy'])->name('employee.destroy')->middleware("can:delete_employee");
+    Route::get('/',             [EmployeeController::class, 'index'])->name('employee.index');
+    Route::get('/create',       [EmployeeController::class, 'create'])->name('employee.create');
+    Route::post('/create',      [EmployeeController::class, 'store'])->name('employee.store');
+    Route::get('/edit/{id}',    [EmployeeController::class, 'edit'])->name('employee.edit');
+    Route::post('/update/{id}',      [EmployeeController::class, 'update'])->name('employee.update');
+    Route::get('/destroy/{id}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
+});
+
+
+// role
+Route::prefix('role')->group(function () {
+    Route::get('/',             [RoleController::class, 'index'])->name('role.index');
+    Route::get('/create',       [RoleController::class, 'create'])->name('role.create');
+    Route::post('/create',      [RoleController::class, 'store'])->name('role.store');
+    Route::get('/edit/{id}',    [RoleController::class, 'edit'])->name('role.edit');
+    Route::post('/update/{id}',      [RoleController::class, 'update'])->name('role.update');
+    Route::get('/destroy/{id}', [RoleController::class, 'destroy'])->name('role.destroy');
+});
+
+// permission group
+Route::prefix('permission-group')->group(function () {
+    Route::get('/',             [PermissionGroupController::class, 'index'])->name('permissionGroup.index');
+    Route::get('/create',       [PermissionGroupController::class, 'create'])->name('permissionGroup.create');
+    Route::post('/create',      [PermissionGroupController::class, 'store'])->name('permissionGroup.store');
+    Route::get('/edit/{id}',    [PermissionGroupController::class, 'edit'])->name('permissionGroup.edit');
+    Route::post('/update/{id}',      [PermissionGroupController::class, 'update'])->name('permissionGroup.update');
+    Route::get('/destroy/{id}', [PermissionGroupController::class, 'destroy'])->name('permissionGroup.destroy');
+});
+
+
+// permission
+Route::prefix('permission')->group(function () {
+    Route::get('/',             [PermissionController::class, 'index'])->name('permission.index');
+    Route::get('/create',       [PermissionController::class, 'create'])->name('permission.create');
+    Route::post('/create',      [PermissionController::class, 'store'])->name('permission.store');
+    Route::get('/edit/{id}',    [PermissionController::class, 'edit'])->name('permission.edit');
+    Route::post('/update/{id}',      [PermissionController::class, 'update'])->name('permission.update');
+    Route::get('/destroy/{id}', [PermissionController::class, 'destroy'])->name('permission.destroy');
 });

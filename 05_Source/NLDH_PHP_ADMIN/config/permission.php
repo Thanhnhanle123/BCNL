@@ -9,6 +9,7 @@ return [
         'permission_group',
         'role',
         'area',
+        'table',
         'home'
     ],
     'model_children' => [

@@ -68,10 +68,15 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('edit_area', 'App\policies\AreaPolicy@update');
         Gate::define('delete_area', 'App\policies\AreaPolicy@delete');
 
+        // Area
+        Gate::define('list_table', 'App\policies\TablePolicy@view');
+        Gate::define('add_table', 'App\policies\TablePolicy@create');
+        Gate::define('edit_table', 'App\policies\TablePolicy@update');
+        Gate::define('delete_table', 'App\policies\TablePolicy@delete');
+
         // Home
-        Gate::define('list_home', function($user){
+        Gate::define('list_home', function ($user) {
             return $user->checkPermissionAccess('list_home');
         });
-
     }
 }

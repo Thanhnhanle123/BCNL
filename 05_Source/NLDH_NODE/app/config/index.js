@@ -13,7 +13,7 @@ const config = {
     mySql : {
       database_name: 'cafe',
       user_name: 'root',
-      password: 'root', 
+      password: '',
       config: {
         dialect: 'mysql',
         host: 'localhost',

@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "bayes": "^1.0.0",
+    "ml-naivebayes": "^4.0.0"
+  }
+}

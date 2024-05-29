@@ -31,7 +31,21 @@ class PermissionController extends Controller
     {
         //
         $permissionGroups = PermissionGroup::all();
-        return view("admin.permissions.create", compact("permissionGroups"));
+        $existingPermissions = Permission::pluck('key_code')->toArray();
+
+        // Tạo mảng chứa các giá trị từ config
+        $configPermissions = [];
+        foreach (config('permission.table_module') as $table_module) {
+            foreach (config('permission.model_children') as $model_children) {
+                $configPermissions[] = "{$model_children}_{$table_module}";
+            }
+        }
+
+        // Lọc các giá trị không có trong existingPermissions
+        $filteredPermissions = array_filter($configPermissions, function ($value) use ($existingPermissions) {
+            return !in_array($value, $existingPermissions);
+        });
+        return view("admin.permissions.create", compact("permissionGroups", "filteredPermissions"));
     }
 
     /**
@@ -75,7 +89,7 @@ class PermissionController extends Controller
         //
         $permission =  Permission::find($id);
         $permissionGroups  = PermissionGroup::all();
-        return view("admin.permissions.edit", compact("permission","permissionGroups"));
+        return view("admin.permissions.edit", compact("permission", "permissionGroups"));
     }
 
     /**

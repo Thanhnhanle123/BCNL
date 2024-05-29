@@ -9,7 +9,8 @@
                       alt="User Image">
               </div>
               <div class="info">
-                  <a href="#" class="d-block">{{ auth()->user()->display_name }}</a>
+                  <a href="#"
+                      class="d-block">{{ auth()->user() == null ? 'Admin' : auth()->user()->display_name }}</a>
               </div>
           </div>
 
@@ -63,9 +64,9 @@
                       </li>
                   @endcan
                   <li class="nav-item" id="navDisk">
-                      <a href="#" class="nav-link">
+                      <a href="{{ route('table.index') }}" class="nav-link">
                           <i class="fas fa-laptop-house"></i>
-                          <p>{{ $diskPage }}</p>
+                          <p>{{ $tablePage }}</p>
                       </a>
                   </li>
                   @can('list_employee')
@@ -87,7 +88,7 @@
                   @can('list_permission_group')
                       <li class="nav-item" id="navPermissionGroup">
                           <a href="{{ route('permissionGroup.index') }}" class="nav-link">
-                              <i class="fas fa-file-signature"></i>
+                              <i class="fas fa-users"></i>
                               <p>{{ $permissionGroupPage }}</p>
                           </a>
                       </li>
@@ -100,6 +101,12 @@
                           </a>
                       </li>
                   @endcan
+                  <li class="nav-item" id="navPermission">
+                      <a href="" class="nav-link">
+                          <i class="fas fa-wallet"></i>
+                          <p>{{ $billPage }}</p>
+                      </a>
+                  </li>
               </ul>
           </nav>
           <!-- /.sidebar-menu -->

@@ -7,6 +7,8 @@ use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Models\Permission;
 use App\Models\PermissionGroup;
+use App\Models\RoleUser;
+use App\Models\Table;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -61,7 +63,7 @@ class RoleController extends Controller
             return redirect()->route('role.index')->with('success', 'Đã thêm vai trò thành công.');
         } catch (\Exception $ex) {
             DB::rollBack();
-            Log::error("message". $ex->getMessage(). " --- Line : ". $ex->getLine());
+            Log::error("message" . $ex->getMessage() . " --- Line : " . $ex->getLine());
         }
     }
 
@@ -113,7 +115,7 @@ class RoleController extends Controller
             return redirect()->route('role.index')->with('success', 'Đã cập nhật thành công.');
         } catch (\Exception $ex) {
             DB::rollBack();
-            Log::error("message". $ex->getMessage(). " --- Line : ". $ex->getLine());
+            Log::error("message" . $ex->getMessage() . " --- Line : " . $ex->getLine());
         }
     }
 
@@ -123,8 +125,29 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy($id)
     {
         //
+        try {
+            $references = RoleUser::where('role_id', $id)->exists();
+
+            if ($references) {
+                return response()->json([
+                    'code' => 400,
+                    'message' => 'Khóa ngoại đang được sử dụng và không thể xóa.'
+                ], 400);
+            }
+            Role::find($id)->delete();
+            return response()->json([
+                'code' => 200,
+                'message' => 'success'
+            ], 200);
+        } catch (\Exception $exception) {
+            Log::error("message" . $exception->getMessage() . " --- Line : " . $exception->getLine());
+            return response()->json([
+                'code' => 500,
+                'message' => $exception->getMessage()
+            ], 500);
+        }
     }
 }

@@ -26,7 +26,7 @@ class UpdatePermissionRequest extends FormRequest
         return [
             'permissionName' => 'required|string|max:255',
             'permissionDescription' => 'nullable|string',
-            'permissionKeyCode' => 'required|string|unique:permissions,key_code',
+            'permissionKeyCode' => 'required|string',
             'permissionGroupId' => 'required|string'
         ];
     }
@@ -36,7 +36,6 @@ class UpdatePermissionRequest extends FormRequest
         return [
             'permissionName.required' => 'Tên là bắt buộc.',
             'permissionKeyCode.required' => 'keyCode là bắt buộc.',
-            'permissionKeyCode.unique' => 'keyCode đã tồn tại',
         ];
     }
 }

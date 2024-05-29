@@ -51,10 +51,8 @@
                                 <div class="form-group">
                                     <label>{{ $permissionKeyCode }}</label>
                                     <select name="permissionKeyCode" id="" class="form-control select2">
-                                        @foreach (config('permission.table_module') as $table_module)
-                                            @foreach (config('permission.model_children') as $model_children)
-                                                <option value="{{ $model_children }}_{{ $table_module }}">{{ $model_children }}_{{ $table_module }}</option>
-                                            @endforeach
+                                        @foreach ($filteredPermissions as $permission)
+                                            <option value="{{ $permission }}">{{ $permission }}</option>
                                         @endforeach
                                     </select>
                                     @error('permissionKeyCode')

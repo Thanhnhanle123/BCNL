@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Area;
 use App\Http\Requests\StoreAreaRequest;
 use App\Http\Requests\UpdateAreaRequest;
+use App\Models\Table;
 use Illuminate\Support\Facades\Log;
 
 class AreaController extends Controller
@@ -101,15 +102,15 @@ class AreaController extends Controller
         // Xóa khu vực khỏi cơ sở dữ liệu
         try {
             // Kiểm tra xem có tham chiếu đến khu vực này không
-            // $references = // thực hiện kiểm tra tham chiếu tại đây, ví dụ: $area->drinks()->exists();
+            $references = Table::where('area_id', $id)->exists();
 
-            // if ($references) {
-            //     // Nếu có tham chiếu, trả về thông báo lỗi
-            //     return response()->json([
-            //         'code' => 400,
-            //         'message' => 'Khu vực đang được sử dụng và không thể xóa.'
-            //     ], 400);
-            // }
+            if ($references) {
+                // Nếu có tham chiếu, trả về thông báo lỗi
+                return response()->json([
+                    'code' => 400,
+                    'message' => 'Khu vực đang được sử dụng và không thể xóa.'
+                ], 400);
+            }
 
             // Nếu không có tham chiếu, tiến hành xóa và trả về thông báo thành công
             Area::find($id)->delete();
